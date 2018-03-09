@@ -18,12 +18,12 @@ int main(int argc, char **argv) {
   edges = new_matrix(4, 4);
   transform = new_matrix(4, 4);
 
-  /* print_matrix(make_rotX(M_PI/4)); */
-  /* printf("\n"); */
-  /* print_matrix(make_rotY(M_PI/4)); */
-  /* printf("\n"); */
-  /* print_matrix(make_rotZ(M_PI/4)); */
-  /* printf("\n"); */
+  print_matrix(make_rotX(M_PI/4)); 
+  printf("\n"); 
+  print_matrix(make_rotY(M_PI/4)); 
+  printf("\n"); 
+  print_matrix(make_rotZ(M_PI/4)); 
+  printf("\n"); 
 
   if ( argc == 2 )
     parse_file( argv[1], transform, edges, s );
