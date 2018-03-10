@@ -21,16 +21,13 @@ void add_circle( struct matrix * points,
                  double cx, double cy, double cz,
                  double r, double step ) {
   double tmp, x0, y0, x1, y1;
-  x0 = cx + r;
-  y0 = cy;
   tmp = 0;
   while(tmp < step){
-    tmp *= 2 * M_PI;
-    x1 = (r * cos(tmp))  + cx;
-    y1 = (r * sin(tmp)) + cy;
+    x0 = (r * cos(tmp * 2 * M_PI))  + cx;
+    y0 = (r * sin(tmp * 2 * M_PI)) + cy;
+    x1 = (r * cos(tmp * 4 * M_PI)) + cx;
+    y1 = (r * sin(tmp * 4 * M_PI)) + cy;
     add_edge(points,x0,y0,cz,x1,y1,cz);
-    x0 = x1;                 
-    y0 = y1;
     tmp+=step;
   }
 }
