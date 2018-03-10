@@ -103,7 +103,11 @@ void parse_file ( char * filename,
     }
 
     else if ( strncmp(line, "bezier", strlen(line)) == 0 ) {
-      
+      fgets(line, sizeof(line), f);
+      sscanf(line, "%lf %lf %lf %lf %lf %lf %lf %lf",
+	     xvals, yvals, xvals+1, yvals+1,
+	     xvals+2, yvals+2, xvals+3, yvals+3);
+      add_curve(edges, xvals[0], yvals[0], xvals[1], yvals[1], xvals[2], yvals[2], xvals[3], yvals[3], .001, 1);
     }
 
     else if ( strncmp(line, "line", strlen(line)) == 0 ) {

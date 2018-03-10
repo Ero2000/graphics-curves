@@ -34,7 +34,7 @@ void add_circle( struct matrix * points,
   }
 }
 
-double herm_func(double a, double b,
+double c_func(double a, double b,
 		 double c, double d,
 		 double t){
   double temp;
@@ -69,27 +69,31 @@ void add_curve( struct matrix *points,
   struct matrix *cx;
   struct matrix *cy;
   double tmp;
+  double cx0, cx1, cy0, cy1, ax, ay, bx, by, xc, yc, dx, dy;
   tmp = 0;
   if (type == 0){
-    double cx0, cx1, cy0, cy1, ax, ay, bx, by, xc, yc, dx, dy;
     cx = generate_curve_coefs(x0,x1,x2,x3,0);
     cy = generate_curve_coefs(y0,y1,y2,y3,0);
-    ax = cx -> m[0][0];
-    ay = cy -> m[0][0];
-    bx = cx -> m[1][0];
-    by = cy -> m[1][0];
-    xc = cx -> m[2][0];
-    yc = cy -> m[2][0];
-    dx = cx -> m[3][0];
-    dy = cy -> m[3][0];
-    while (tmp < 1){
-      cx0 = herm_func(ax,bx,xc,dx,tmp);
-      cy0 = herm_func(ay,by,yc,dy,tmp);
-      cx1 = herm_func(ax,bx,xc,dx,tmp+step);
-      cy1 = herm_func(ay,by,yc,dy,tmp+step);
-      add_edge(points,cx0,cy0,0,cx1,cy1,0);
-      tmp+=step;
-    }
+  }
+  else if (type == 1){
+    cx = generate_curve_coefs(x0,x1,x2,x3,1);
+    cy = generate_curve_coefs(y0,y1,y2,y3,1);
+  }
+  ax = cx -> m[0][0];
+  ay = cy -> m[0][0];
+  bx = cx -> m[1][0];
+  by = cy -> m[1][0];
+  xc = cx -> m[2][0];
+  yc = cy -> m[2][0];
+  dx = cx -> m[3][0];
+  dy = cy -> m[3][0];
+  while (tmp < 1){
+    cx0 = c_func(ax,bx,xc,dx,tmp);
+    cy0 = c_func(ay,by,yc,dy,tmp);
+    cx1 = c_func(ax,bx,xc,dx,tmp+step);
+    cy1 = c_func(ay,by,yc,dy,tmp+step);
+    add_edge(points,cx0,cy0,0,cx1,cy1,0);
+    tmp+=step;
   }
 }
 
