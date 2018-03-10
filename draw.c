@@ -66,33 +66,33 @@ void add_curve( struct matrix *points,
                 double x2, double y2, 
                 double x3, double y3, 
                 double step, int type ) {
-  struct matrix *cx;
-  struct matrix *cy;
-  double tmp;
-  double cx0, cx1, cy0, cy1, ax, ay, bx, by, xc, yc, dx, dy;
-  tmp = 0;
-  cx = generate_curve_coefs(x0,x1,x2,x3,type);
-  cy = generate_curve_coefs(y0,y1,y2,y3,type);
+  struct matrix *curve_x;
+  struct matrix *curve_y;
 
-  ax = cx -> m[0][0];
-  ay = cy -> m[0][0];
-  bx = cx -> m[1][0];
-  by = cy -> m[1][0];
-  xc = cx -> m[2][0];
-  yc = cy -> m[2][0];
-  dx = cx -> m[3][0];
-  dy = cy -> m[3][0];
+  curve_x = generate_curve_coefs(x0,x1,x2,x3,type);
+  curve_y = generate_curve_coefs(y0,y1,y2,y3,type);
 
+  double ax,ay,bx,by,cx,cy,dx,dy;
+  ax = curve_x -> m[0][0];
+  bx = curve_x -> m[1][0];
+  cx = curve_x -> m[2][0];
+  dx = curve_x -> m[3][0];
+  ay = curve_y -> m[0][0];
+  by = curve_y -> m[1][0];
+  cy = curve_y -> m[2][0];
+  dy = curve_y -> m[3][0];
+
+  double cx0,cy0,cx1,cy1,t;
+  t = 0;
   cx0 = x0;
   cy0 = y0;
-  
-  while (tmp < 1){
-    cx1 = c_func(ax,bx,xc,dx,tmp);
-    cy1 = c_func(ay,by,yc,dy,tmp);
+  while (t < 1){
+    cx1 = c_func(ax,bx,cx,dx,t);
+    cy1 = c_func(ay,by,cy,dy,t);
     add_edge(points,cx0,cy0,0,cx1,cy1,0);
     cx0 = cx1;
     cy0 = cy1;
-    tmp+=step;
+    t+=step;
   }
 }
 
