@@ -22,7 +22,7 @@ void add_circle( struct matrix * points,
                  double r, double step ) {
   double tmp, x0, y0, x1, y1;
   tmp = 0;
-  while(tmp < step){
+  while(tmp < 1){
     x0 = (r * cos(tmp * 2 * M_PI))  + cx;
     y0 = (r * sin(tmp * 2 * M_PI)) + cy;
     x1 = (r * cos(tmp * 4 * M_PI)) + cx;
