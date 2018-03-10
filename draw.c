@@ -38,7 +38,7 @@ double c_func(double a, double b,
 		 double c, double d,
 		 double t){
   double temp;
-  temp = (a * pow(t,3)) + (b * pow(t,2)) + (c * t) + d;
+  temp = (a * powf(t,3)) + (b * powf(t,2)) + (c * t) + d;
   return temp;
 }
 			   
