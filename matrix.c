@@ -92,7 +92,7 @@ struct matrix * generate_curve_coefs( double p1, double p2,
     matrix_mult(make_bezier(), temp);
     return temp;
   }
-  return NULL;
+  return temp;
 }
 
 
